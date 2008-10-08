@@ -38,7 +38,7 @@ class ModelBase(object):
     def remove(self, key=None):
         if key == None:
             key = {}
-            if not self._id:
+            if not hasattr(self, '_id'):
                 return
             key['_id'] = self._id
         return self._c.remove(key)
