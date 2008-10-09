@@ -42,4 +42,4 @@ else:
         data['s'] = myStudent
 
         local.views.student( data )
-del request
+del request, response
