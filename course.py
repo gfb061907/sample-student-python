@@ -33,3 +33,5 @@ if data.has_key('c'):
     template = local.views.course
 
 template(data)
+
+del request
