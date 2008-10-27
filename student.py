@@ -1,6 +1,7 @@
 from models.student import Student
 from models.course import Course
-from _10gen import request, local, Forms, response
+from core.content.forms import Forms
+from _10gen import request, local, response
 
 data = {}
 
