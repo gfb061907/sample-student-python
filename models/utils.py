@@ -20,7 +20,7 @@ class Score(object):
         self.grade = grd
 
     def __str__(self):
-        return self.for_course + ': ' + self.grade
+        return '%s: %s'%(self.for_course, self.grade)
 
     def passed(self):
         return self.grade >= 2.0
