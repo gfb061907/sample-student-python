@@ -22,7 +22,7 @@ else:
         if request.action == "Save":
             Forms.fillInObject("s_", myStudent, request)
 
-            if myStudent._new:
+            if hasattr(myStudent, "_new"):
                 myStudent._new = False
 
             myStudent.save()
