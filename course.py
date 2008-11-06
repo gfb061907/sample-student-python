@@ -6,26 +6,26 @@ data = {}
 data['cs'] = Course.find().limit( 100 ).sort( { 'name' : 1 } )
 template = local.views.courses
 
-
+action = request.get("action", None)
 
 if "c__id" in request:
     data['c'] = Course.findOne( request.c__id )
 
-if request.action == "list":
+if action == "list":
     # already setup
     pass
-elif data.has_key('c') and request.action == "Delete":
+elif data.has_key('c') and action == "Delete":
     data['c'].remove()
     del data['c']
-elif data.has_key('c') and request.action == "Edit":
+elif data.has_key('c') and action == "Edit":
     pass
-elif request.action == "Save":
+elif action == "Save":
     data['c'] = data.get('c', Course())
     Forms.fillInObject("c_", data['c'], request)
     data['c'].save()
     del data['c']
 
-elif request.action == "New":
+elif action == "New":
     data['c'] = Course()
 
 if data.has_key('c'):
