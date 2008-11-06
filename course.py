@@ -8,7 +8,7 @@ template = local.views.courses
 
 
 
-if request.c__id:
+if "c__id" in request:
     data['c'] = Course.findOne( request.c__id )
 
 if request.action == "list":

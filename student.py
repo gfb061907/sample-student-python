@@ -10,7 +10,7 @@ if request.action == "list":
 
     local.views.students(data)
 else:
-    myStudent = Student.findOne(request.s__id, True)
+    myStudent = Student.findOne(request.get("s__id", None), True)
 
     if request.action == "Delete":
         myStudent.remove()
