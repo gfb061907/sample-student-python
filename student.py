@@ -5,21 +5,23 @@ from _10gen import request, local, response
 
 data = {}
 
-if request.action == "list":
+action = request.get('action', None)
+
+if action == "list":
     data['ss'] = Student.find().limit(50).sort({'name': 1})
 
     local.views.students(data)
 else:
     myStudent = Student.findOne(request.get("s__id", None), True)
 
-    if request.action == "Delete":
+    if action == "Delete":
         myStudent.remove()
         response.sendRedirectTemporary("/students")
 
     else:
         data['courses'] = Course.find().toArray()
 
-        if request.action == "Save":
+        if action == "Save":
             Forms.fillInObject("s_", myStudent, request)
 
             if hasattr(myStudent, "_new"):
@@ -28,7 +30,7 @@ else:
             myStudent.save()
             data['msg'] = "Saved"
 
-        if request.action == "Add" and 'course_for' in request \
+        if action == "Add" and 'course_for' in request \
                 and 'score' in request:
             course_id = request.course_for
             c = Course.findOne(course_id)
